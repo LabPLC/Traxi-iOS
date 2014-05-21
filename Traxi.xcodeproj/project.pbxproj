@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F312730D192C36D2002E4119 /* DetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312730C192C36D2002E4119 /* DetallesViewController.m */; };
+		F3127310192C36EC002E4119 /* InicioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312730F192C36EC002E4119 /* InicioViewController.m */; };
+		F34A80CF1915CE26000E26CF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34A80CE1915CE26000E26CF /* AddressBook.framework */; };
+		F34A80D31915CF7B000E26CF /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34A80D21915CF7B000E26CF /* AddressBookUI.framework */; };
+		F34A80D619174FF7000E26CF /* AnalizarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34A80D519174FF7000E26CF /* AnalizarViewController.m */; };
+		F34A80D81917508B000E26CF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34A80D71917508B000E26CF /* AVFoundation.framework */; };
+		F34A80DA1917577C000E26CF /* yisus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F34A80D91917577C000E26CF /* yisus.jpg */; };
+		F34A80DC1917F10B000E26CF /* usuario.png in Resources */ = {isa = PBXBuildFile; fileRef = F34A80DB1917F10B000E26CF /* usuario.png */; };
+		F34A80DF19184662000E26CF /* resizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F34A80DE19184662000E26CF /* resizeImage.m */; };
+		F34A80E1191849CE000E26CF /* taxi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F34A80E0191849CE000E26CF /* taxi.jpg */; };
+		F389EC2B192C6B5F001FB68B /* ViajeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F389EC2A192C6B5F001FB68B /* ViajeViewController.m */; };
+		F389EC2D192C6BDF001FB68B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F389EC2C192C6BDF001FB68B /* MapKit.framework */; };
+		F389EC2F192C6BE5001FB68B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F389EC2E192C6BE5001FB68B /* CoreLocation.framework */; };
 		F3AF8ADC19081D36000DA874 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADB19081D36000DA874 /* Foundation.framework */; };
 		F3AF8ADE19081D36000DA874 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */; };
 		F3AF8AE019081D37000DA874 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADF19081D37000DA874 /* UIKit.framework */; };
@@ -35,6 +48,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F312730B192C36D2002E4119 /* DetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetallesViewController.h; sourceTree = "<group>"; };
+		F312730C192C36D2002E4119 /* DetallesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetallesViewController.m; sourceTree = "<group>"; };
+		F312730E192C36EC002E4119 /* InicioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InicioViewController.h; sourceTree = "<group>"; };
+		F312730F192C36EC002E4119 /* InicioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InicioViewController.m; sourceTree = "<group>"; };
+		F34A80CE1915CE26000E26CF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		F34A80D21915CF7B000E26CF /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		F34A80D419174FF7000E26CF /* AnalizarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalizarViewController.h; path = ../AnalizarViewController.h; sourceTree = "<group>"; };
+		F34A80D519174FF7000E26CF /* AnalizarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalizarViewController.m; path = ../AnalizarViewController.m; sourceTree = "<group>"; };
+		F34A80D71917508B000E26CF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F34A80D91917577C000E26CF /* yisus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yisus.jpg; sourceTree = "<group>"; };
+		F34A80DB1917F10B000E26CF /* usuario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = usuario.png; sourceTree = "<group>"; };
+		F34A80DD19184662000E26CF /* resizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resizeImage.h; sourceTree = "<group>"; };
+		F34A80DE19184662000E26CF /* resizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resizeImage.m; sourceTree = "<group>"; };
+		F34A80E0191849CE000E26CF /* taxi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = taxi.jpg; sourceTree = "<group>"; };
+		F389EC29192C6B5F001FB68B /* ViajeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViajeViewController.h; sourceTree = "<group>"; };
+		F389EC2A192C6B5F001FB68B /* ViajeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViajeViewController.m; sourceTree = "<group>"; };
+		F389EC2C192C6BDF001FB68B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F389EC2E192C6BE5001FB68B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F3AF8AD819081D36000DA874 /* Traxi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traxi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3AF8ADB19081D36000DA874 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +93,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F389EC2F192C6BE5001FB68B /* CoreLocation.framework in Frameworks */,
+				F389EC2D192C6BDF001FB68B /* MapKit.framework in Frameworks */,
+				F34A80D81917508B000E26CF /* AVFoundation.framework in Frameworks */,
+				F34A80D31915CF7B000E26CF /* AddressBookUI.framework in Frameworks */,
+				F34A80CF1915CE26000E26CF /* AddressBook.framework in Frameworks */,
 				F3AF8ADE19081D36000DA874 /* CoreGraphics.framework in Frameworks */,
 				F3AF8AE019081D37000DA874 /* UIKit.framework in Frameworks */,
 				F3AF8ADC19081D36000DA874 /* Foundation.framework in Frameworks */,
@@ -103,6 +139,11 @@
 		F3AF8ADA19081D36000DA874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F389EC2E192C6BE5001FB68B /* CoreLocation.framework */,
+				F389EC2C192C6BDF001FB68B /* MapKit.framework */,
+				F34A80D71917508B000E26CF /* AVFoundation.framework */,
+				F34A80D21915CF7B000E26CF /* AddressBookUI.framework */,
+				F34A80CE1915CE26000E26CF /* AddressBook.framework */,
 				F3AF8ADB19081D36000DA874 /* Foundation.framework */,
 				F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */,
 				F3AF8ADF19081D37000DA874 /* UIKit.framework */,
@@ -114,9 +155,22 @@
 		F3AF8AE119081D37000DA874 /* Traxi */ = {
 			isa = PBXGroup;
 			children = (
+				F34A80DD19184662000E26CF /* resizeImage.h */,
+				F34A80DE19184662000E26CF /* resizeImage.m */,
+				F34A80E0191849CE000E26CF /* taxi.jpg */,
+				F34A80DB1917F10B000E26CF /* usuario.png */,
+				F34A80D91917577C000E26CF /* yisus.jpg */,
+				F34A80D419174FF7000E26CF /* AnalizarViewController.h */,
+				F34A80D519174FF7000E26CF /* AnalizarViewController.m */,
 				F3AF8AEA19081D37000DA874 /* AppDelegate.h */,
 				F3AF8AEB19081D37000DA874 /* AppDelegate.m */,
 				F3AF8AED19081D37000DA874 /* Main_iPhone.storyboard */,
+				F312730B192C36D2002E4119 /* DetallesViewController.h */,
+				F312730C192C36D2002E4119 /* DetallesViewController.m */,
+				F389EC29192C6B5F001FB68B /* ViajeViewController.h */,
+				F389EC2A192C6B5F001FB68B /* ViajeViewController.m */,
+				F312730E192C36EC002E4119 /* InicioViewController.h */,
+				F312730F192C36EC002E4119 /* InicioViewController.m */,
 				F3AF8AF019081D37000DA874 /* Main_iPad.storyboard */,
 				F3AF8AF319081D37000DA874 /* ViewController.h */,
 				F3AF8AF419081D37000DA874 /* ViewController.m */,
@@ -231,7 +285,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F34A80DC1917F10B000E26CF /* usuario.png in Resources */,
 				F3AF8AF219081D37000DA874 /* Main_iPad.storyboard in Resources */,
+				F34A80E1191849CE000E26CF /* taxi.jpg in Resources */,
+				F34A80DA1917577C000E26CF /* yisus.jpg in Resources */,
 				F3AF8AF719081D37000DA874 /* Images.xcassets in Resources */,
 				F3AF8AEF19081D37000DA874 /* Main_iPhone.storyboard in Resources */,
 				F3AF8AE619081D37000DA874 /* InfoPlist.strings in Resources */,
@@ -253,8 +310,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F34A80DF19184662000E26CF /* resizeImage.m in Sources */,
+				F34A80D619174FF7000E26CF /* AnalizarViewController.m in Sources */,
+				F312730D192C36D2002E4119 /* DetallesViewController.m in Sources */,
 				F3AF8AF519081D37000DA874 /* ViewController.m in Sources */,
 				F3AF8AEC19081D37000DA874 /* AppDelegate.m in Sources */,
+				F3127310192C36EC002E4119 /* InicioViewController.m in Sources */,
+				F389EC2B192C6B5F001FB68B /* ViajeViewController.m in Sources */,
 				F3AF8AE819081D37000DA874 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +532,7 @@
 				F3AF8B0F19081D37000DA874 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3AF8B1019081D37000DA874 /* Build configuration list for PBXNativeTarget "TraxiTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +541,7 @@
 				F3AF8B1219081D37000DA874 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
