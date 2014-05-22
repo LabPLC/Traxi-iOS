@@ -321,7 +321,7 @@
                 else{
                     
                     
-                    delegate.registrado=@"Este vehículo  es regular.";
+                    delegate.registrado=@"Este vehículo es regular.";
                     delegate.marca=[[consulta objectForKey:@"concesion"] objectForKey:@"marca"];
                     delegate.submarca=[[consulta objectForKey:@"concesion"] objectForKey:@"submarca"];
                     delegate.anio=[[consulta objectForKey:@"concesion"] objectForKey:@"anio"];

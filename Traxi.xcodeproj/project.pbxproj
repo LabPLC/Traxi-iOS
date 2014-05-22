@@ -33,6 +33,8 @@
 		F389EC8D192DB7E4001FB68B /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC89192DB7E4001FB68B /* gps.png */; };
 		F389EC8E192DB7E4001FB68B /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC8A192DB7E4001FB68B /* tips.png */; };
 		F389EC8F192DB7E4001FB68B /* perfil.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC8B192DB7E4001FB68B /* perfil.png */; };
+		F389EC91192E7534001FB68B /* tools.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC90192E7534001FB68B /* tools.png */; };
+		F389EC93192E790E001FB68B /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC92192E790E001FB68B /* star1.png */; };
 		F3AF8ADC19081D36000DA874 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADB19081D36000DA874 /* Foundation.framework */; };
 		F3AF8ADE19081D36000DA874 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */; };
 		F3AF8AE019081D37000DA874 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADF19081D37000DA874 /* UIKit.framework */; };
@@ -92,6 +94,8 @@
 		F389EC89192DB7E4001FB68B /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
 		F389EC8A192DB7E4001FB68B /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
 		F389EC8B192DB7E4001FB68B /* perfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil.png; sourceTree = "<group>"; };
+		F389EC90192E7534001FB68B /* tools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tools.png; sourceTree = "<group>"; };
+		F389EC92192E790E001FB68B /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
 		F3AF8AD819081D36000DA874 /* Traxi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traxi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3AF8ADB19081D36000DA874 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,11 +161,13 @@
 				F389EC86192DB704001FB68B /* mail.png */,
 				F389EC80192DB62F001FB68B /* foto.png */,
 				F389EC81192DB62F001FB68B /* taxi.png */,
+				F389EC92192E790E001FB68B /* star1.png */,
 				F389EC73192D9117001FB68B /* escudo.png */,
 				F34A80DB1917F10B000E26CF /* usuario.png */,
 				F389EC75192D98BF001FB68B /* paloma.png */,
 				F389EC77192D98C4001FB68B /* tache.png */,
 				F34A80D91917577C000E26CF /* yisus.jpg */,
+				F389EC90192E7534001FB68B /* tools.png */,
 			);
 			name = imagebes;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 				F3AF8AF219081D37000DA874 /* Main_iPad.storyboard in Resources */,
 				F389EC8D192DB7E4001FB68B /* gps.png in Resources */,
 				F34A80E1191849CE000E26CF /* taxi2.jpg in Resources */,
+				F389EC91192E7534001FB68B /* tools.png in Resources */,
 				F34A80DA1917577C000E26CF /* yisus.jpg in Resources */,
 				F389EC87192DB704001FB68B /* mail.png in Resources */,
 				F389EC85192DB635001FB68B /* cel.png in Resources */,
@@ -352,6 +359,7 @@
 				F389EC82192DB62F001FB68B /* foto.png in Resources */,
 				F389EC83192DB62F001FB68B /* taxi.png in Resources */,
 				F389EC7F192DB61F001FB68B /* chinche_llena.png in Resources */,
+				F389EC93192E790E001FB68B /* star1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

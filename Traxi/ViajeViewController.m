@@ -14,7 +14,8 @@
 
 @implementation ViajeViewController
 {
-    MKPolyline * routeLine;
+    MKPolyline * ruta_direccion;
+      MKPolyline * ruta;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,9 +90,11 @@
             MKMapPoint * pointsArray = malloc(sizeof(CLLocationCoordinate2D)*2);
             pointsArray[0]= MKMapPointForCoordinate(CLLocationCoordinate2DMake(oldLocation.coordinate.latitude,oldLocation.coordinate.longitude));
             pointsArray[1]= MKMapPointForCoordinate(CLLocationCoordinate2DMake(newLocation.coordinate.latitude,newLocation.coordinate.longitude));
-            routeLine = [MKPolyline polylineWithPoints:pointsArray count:2];
-            free(pointsArray);
-            [_mapa addOverlay:routeLine];
+            ruta = [MKPolyline polylineWithPoints:pointsArray count:2];
+            
+            
+            ruta.title=@"muevete_como_anoche";
+            [_mapa addOverlay:ruta];
             
             
             //  [_mapa setRegion:region];
@@ -119,9 +122,11 @@
             MKMapPoint * pointsArray = malloc(sizeof(CLLocationCoordinate2D)*2);
             pointsArray[0]= MKMapPointForCoordinate(CLLocationCoordinate2DMake(oldLocation.coordinate.latitude,oldLocation.coordinate.longitude));
             pointsArray[1]= MKMapPointForCoordinate(CLLocationCoordinate2DMake(newLocation.coordinate.latitude,newLocation.coordinate.longitude));
-            routeLine = [MKPolyline polylineWithPoints:pointsArray count:2];
+            ruta = [MKPolyline polylineWithPoints:pointsArray count:2];
+            ruta.title=@"muevete_como_anoche";
+
             free(pointsArray);
-            [_mapa addOverlay:routeLine];
+            [_mapa addOverlay:ruta];
             
             
             //  [_mapa setRegion:region];
@@ -227,11 +232,20 @@
     if ([overlay isKindOfClass:[MKPolyline class]]) {
         MKPolyline *route = overlay;
         MKPolylineRenderer *routeRenderer = [[MKPolylineRenderer alloc] initWithPolyline:route];
+        if ([overlay.title isEqualToString:(@"muevete_como_anoche")]) {
+           routeRenderer.strokeColor = [UIColor blueColor];
+        }
+        else{
         routeRenderer.strokeColor = [UIColor redColor];
+        }
+        
+        routeRenderer.lineWidth = 2;
         return routeRenderer;
     }
     else return nil;
 }
+
+
 - (void)showDirections:(MKDirectionsResponse *)response
 {
     int i=0;
@@ -246,26 +260,26 @@
 
 
 
-//
-
+//para pintar linea de tu viaje
+/*
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id )overlay
 
 {
     
     MKOverlayView* overlayView = nil;
     
-    MKPolylineView  * routeLineView = [[MKPolylineView alloc] initWithPolyline:routeLine];
+    MKPolylineView  * routeLineView = [[MKPolylineView alloc] initWithPolyline:ruta];
     
     
-    routeLineView.fillColor = [UIColor redColor];
+    routeLineView.fillColor = [UIColor blueColor];
     
     routeLineView.strokeColor = [UIColor orangeColor];
     
-    routeLineView.lineWidth = 1;
+    routeLineView.lineWidth = 0.5;
     
     overlayView = routeLineView;
     
     return overlayView;
     
-}
+}*/
 @end

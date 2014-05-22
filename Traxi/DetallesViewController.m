@@ -25,10 +25,25 @@
     }
     return self;
 }
-
+-(void)irHerramientas
+{
+    NSLog(@"Herramientas");
+}
 
 - (void)viewDidLoad
 {
+    UIImage *tools = [UIImage imageNamed:@"tools.png"];
+    UIButton *toolsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    toolsBtn.bounds = CGRectMake( 0, 0, 50,50 );
+    [toolsBtn setImage:tools forState:UIControlStateNormal];
+    UIBarButtonItem *toolsBar = [[UIBarButtonItem alloc] initWithCustomView:toolsBtn];
+    [toolsBar setTarget:self];
+    
+    [toolsBar setAction:@selector(irHerramientas)];
+   
+    //UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(irHerramientas)];
+    self.navigationItem.rightBarButtonItem = toolsBar;
+    
     _tableView = [[UITableView alloc]  init ];
     
     _tableView.dataSource   = self;
@@ -219,6 +234,12 @@
             imageView.image = [UIImage imageNamed:@"usuario.png"];
             [_scroll addSubview:imageView];
             
+            if ([delegate.registrado isEqualToString:@"Este vehículo es regular."]) {
+                imageView.image = [UIImage imageNamed:@"paloma.png"];
+            }
+            else{
+                 imageView.image = [UIImage imageNamed:@"tache.png"];
+            }
             ///// 2
             
             lbldatos2=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 70, 150, 20)];
@@ -411,6 +432,15 @@
             imageView5.image = [UIImage imageNamed:@"usuario.png"];
             [_scroll addSubview:imageView5];
             
+            
+            if ([[delegate.tenencias objectForKey:@"tieneadeudos"]isEqualToString:@"1"]) {
+                datos5.text=@"Este vehículo tiene adeudos.";
+                imageView5.image = [UIImage imageNamed:@"tache.png"];
+            }
+            else{
+                imageView5.image = [UIImage imageNamed:@"paloma.png"];
+                datos5.text=@"Este vehículo no tiene adeudos.";
+            }
         
         }
         else if (i==2){
