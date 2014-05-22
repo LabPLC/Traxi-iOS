@@ -10,6 +10,9 @@
 
 @interface InicioViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *letra;
+@property (weak, nonatomic) IBOutlet UIImageView *imagen;
 @property (weak, nonatomic) IBOutlet UITextField *numeros;
 - (IBAction)takePhoto:(UIButton *)sender;
+-(IBAction)verificar:(id)sender;
 @end
+

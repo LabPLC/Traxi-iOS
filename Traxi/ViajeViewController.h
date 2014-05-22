@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-@interface ViajeViewController : UIViewController<MKMapViewDelegate>
+#import <CoreLocation/CoreLocation.h>
+@interface ViajeViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 @property (nonatomic, retain) IBOutlet MKMapView *mapa;
+@property (strong, nonatomic) CLLocationManager *LocationManager;
 -(IBAction)getCurrentLocation:(id)sender;
+-(IBAction)ruta:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *buscar;
 
 @end

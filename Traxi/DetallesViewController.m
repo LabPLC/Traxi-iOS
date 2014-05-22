@@ -7,13 +7,16 @@
 //
 
 #import "DetallesViewController.h"
-
+#import "AppDelegate.h"
 @interface DetallesViewController ()
 
 @end
 
 @implementation DetallesViewController
-
+{
+    AppDelegate *delegate;
+    NSArray *comentarios;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,19 +29,44 @@
 
 - (void)viewDidLoad
 {
+    _tableView = [[UITableView alloc]  init ];
+    
+    _tableView.dataSource   = self;
+    _tableView.delegate     = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *url=[NSString stringWithFormat:(@"http://datos.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=getcomentario&placa=%@"),delegate.placa];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        
+        if ([data length] >0  )
+        {
+            NSString *dato=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSMutableString * miCadena = [NSMutableString stringWithString: dato];
+            NSData *data1 = [miCadena dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data1 options:NSJSONReadingAllowFragments error:nil];
+            
+            NSMutableDictionary *consulta=[[NSMutableDictionary alloc]init];
+            consulta = [jsonObject objectForKey:@"message"];
+            comentarios=[consulta objectForKey:@"calificacion"];
+            [_tableView reloadData];
+
+        }
+    });
+    delegate= (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //http://datos.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=getcomentario&placa=a05601
+    
     [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
-     paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4", nil];
+     paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3", nil];
     [super viewDidLoad];
     for (int i = 0; i < [paginas count]; i++) {
         if (i==0) {
             UIView *fondo;
+            UIView *fondo_calificacion;
             UIImageView *imageView;
             UILabel *lbldatos;
             UILabel *datos;
             CGRect frame;
             CGRect frame_fondo;
-            CGRect frame2;
-            CGRect frame_argumento;
+          
             
           /*  if ( [delegate.alto intValue] < 568) {
                 
@@ -83,21 +111,25 @@
                 lbldatos=[[UILabel alloc]initWithFrame:CGRectMake(3, 5, fondo.frame.size.width-20, 20)];
                 [lbldatos setFont:[UIFont systemFontOfSize:12]];
                 lbldatos.textAlignment = NSTextAlignmentLeft;
-                lbldatos.text=@"Datos del vehículo";
+                lbldatos.text=[NSString stringWithFormat: (@"Datos del vehículo: %@"),delegate.placa];
                 [fondo addSubview:lbldatos];
             
                 datos=[[UILabel alloc]initWithFrame:CGRectMake(3, 30, fondo.frame.size.width-20, 20)];
                 [datos setFont:[UIFont systemFontOfSize:14]];
                 datos.textAlignment = NSTextAlignmentLeft;
-                datos.text=@"VOLKWAGEN,POINTER,2007";
+                datos.text=[NSString stringWithFormat: (@"%@,%@,%@"),delegate.marca,delegate.submarca,delegate.anio];
                 [fondo addSubview:datos];
             
-                frame.origin.x = (self.scroll.frame.size.width * i)+50;
-                frame.origin.y = 60;
+            
+                fondo_calificacion = [[UIView alloc] initWithFrame:CGRectMake((self.scroll.frame.size.width * i)+30, 65, 240, 270)];
+                fondo_calificacion.backgroundColor=[UIColor greenColor];
+            
+                frame.origin.x = (self.scroll.frame.size.width * i)+30;
+                frame.origin.y = 65;
                 frame.size.height =270;
-                frame.size.width=220;//self.scrollView.frame.size;
+                frame.size.width=240;//self.scrollView.frame.size;
                 imageView = [[UIImageView alloc] initWithFrame:frame];
-                imageView.image = [UIImage imageNamed:@"yisus.jpg"];
+                imageView.image = [UIImage imageNamed:@"escudo.png"];
                 //label
                 
                 
@@ -127,6 +159,7 @@
             //[registro adjustsFontSizeToFitWidth];
             //[self.scroll addSubview:argumento];
             //[self.scroll addSubview:registro];
+             [self.scroll addSubview:fondo_calificacion];
             [self.scroll addSubview:imageView];
              [self.scroll addSubview:fondo];
 
@@ -174,24 +207,165 @@
             linea.backgroundColor=[UIColor lightGrayColor];
             [_scroll addSubview:linea];
             
-            datos=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 26, 150, 20)];
+            datos=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 26, 200, 20)];
             [datos setFont:[UIFont systemFontOfSize:12]];
             datos.textAlignment = NSTextAlignmentLeft;
-            datos.text=@"Este vehículo es regular";
+            datos.text=delegate.registrado;
             [_scroll addSubview:datos];
             
             imageView = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), 26, 30, 30)];
 
             imageView.image = [UIImage imageNamed:@"usuario.png"];
             [_scroll addSubview:imageView];
+            
+            ///// 2
+            
+            lbldatos2=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 70, 150, 20)];
+            [lbldatos2 setFont:[UIFont systemFontOfSize:12]];
+            lbldatos2.textAlignment = NSTextAlignmentLeft;
+            lbldatos2.text=@"Infracciones";
+            [_scroll addSubview:lbldatos2];
+            
+            linea2 = [[UIView alloc] initWithFrame:CGRectMake((self.scroll.frame.size.width * i)+15, 90, self.scroll.frame.size.width -20, 2)];
+            linea2.backgroundColor=[UIColor lightGrayColor];
+            [_scroll addSubview:linea2];
+            
+            datos2=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 91, 200, 20)];
+            [datos2 setFont:[UIFont systemFontOfSize:12]];
+            datos2.textAlignment = NSTextAlignmentLeft;
+           
+           
+            [_scroll addSubview:datos2];
+            
+            imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), 91, 30, 30)];
+            if ([delegate.infracciones count]==0) {
+                datos2.text=@"Este vehículo no tiene multas";
+                imageView2.image = [UIImage imageNamed:@"paloma.png"];
+            }
+            else{  datos2.text=@"Este vehículo  tiene multas";
+            imageView2.image = [UIImage imageNamed:@"tache.png"];
+            }
+            
+            [_scroll addSubview:imageView2];
+          
+            ////3
+            lbldatos3=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), imageView2.frame.origin.y +35, 150, 20)];
+            [lbldatos3 setFont:[UIFont systemFontOfSize:12]];
+            lbldatos3.textAlignment = NSTextAlignmentLeft;
+            lbldatos3.text=@"Vehiculo.";
+            [_scroll addSubview:lbldatos3];
+            
+            linea3 = [[UIView alloc] initWithFrame:CGRectMake((self.scroll.frame.size.width * i)+15, lbldatos3.frame.origin.y +20, self.scroll.frame.size.width -20, 2)];
+            linea3.backgroundColor=[UIColor lightGrayColor];
+            [_scroll addSubview:linea3];
+            
+            datos3=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), linea3.frame.origin.y +1, 200, 20)];
+            [datos3 setFont:[UIFont systemFontOfSize:12]];
+            datos3.textAlignment = NSTextAlignmentLeft;
+            
+            [_scroll addSubview:datos3];
+            
+            imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), linea3.frame.origin.y +1, 30, 30)];
+            
+            int año=2014-[delegate.anio integerValue];
+            if (año>10) {
+                datos3.text=[NSString stringWithFormat:@"Este vehículo no es óptimo. Año %@",delegate.anio];
+                imageView3.image = [UIImage imageNamed:@"tache.png"];
+            }
+            else{
+                datos3.text=[NSString stringWithFormat:@"Este vehículo  es óptimo. Año %@",delegate.anio];
+                imageView3.image = [UIImage imageNamed:@"paloma.png"];
+            }
+
+            [_scroll addSubview:imageView3];
+            
+            ////4
+            lbldatos4=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), imageView3.frame.origin.y +35, 150, 20)];
+            [lbldatos4 setFont:[UIFont systemFontOfSize:12]];
+            lbldatos4.textAlignment = NSTextAlignmentLeft;
+            lbldatos4.text=@"Verificaciones.";
+            [_scroll addSubview:lbldatos4];
+            
+            linea4 = [[UIView alloc] initWithFrame:CGRectMake((self.scroll.frame.size.width * i)+15, lbldatos4.frame.origin.y +20, self.scroll.frame.size.width -20, 2)];
+            linea4.backgroundColor=[UIColor lightGrayColor];
+            [_scroll addSubview:linea4];
+            
+            datos4=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), linea4.frame.origin.y +1, 200, 20)];
+            [datos4 setFont:[UIFont systemFontOfSize:12]];
+            datos4.textAlignment = NSTextAlignmentLeft;
+            datos4.text=delegate.registrado;
+            [_scroll addSubview:datos4];
+            
+            imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), linea4.frame.origin.y +1, 30, 30)];
+            
+            imageView4.image = [UIImage imageNamed:@"usuario.png"];
+            [_scroll addSubview:imageView4];
+            ////5
+            lbldatos5=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), imageView4.frame.origin.y +35, 150, 20)];
+            [lbldatos5 setFont:[UIFont systemFontOfSize:12]];
+            lbldatos5.textAlignment = NSTextAlignmentLeft;
+            lbldatos5.text=@"Tenencia.";
+            [_scroll addSubview:lbldatos5];
+            
+            linea5 = [[UIView alloc] initWithFrame:CGRectMake((self.scroll.frame.size.width * i)+15, lbldatos5.frame.origin.y +20, self.scroll.frame.size.width -20, 2)];
+            linea5.backgroundColor=[UIColor lightGrayColor];
+            [_scroll addSubview:linea5];
+            
+            datos5=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), linea5.frame.origin.y +1, 200, 20)];
+            [datos5 setFont:[UIFont systemFontOfSize:12]];
+            datos5.textAlignment = NSTextAlignmentLeft;
+            datos5.text=delegate.registrado;
+            [_scroll addSubview:datos5];
+            
+            imageView5 = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), linea5.frame.origin.y +1, 30, 30)];
+            
+            imageView5.image = [UIImage imageNamed:@"usuario.png"];
+            [_scroll addSubview:imageView5];
+            
         
         }
-        else if (i==2){}
+        else if (i==2){
+        
+          CGRect  frame_tabla=CGRectMake((self.scroll.frame.size.width * i)+15, 15, 300, 300);
+            _tableView.frame=frame_tabla;
+            
+            _tableView.rowHeight=40;
+           // [_tableView setBackgroundColor:[UIColor blackColor]];
+          
+            [_scroll addSubview:_tableView];
+            [_tableView reloadData];
+        
+        
+        
+        }
     }
     _scroll.contentSize = CGSizeMake(_scroll.frame.size.width * [paginas count], _scroll.frame.size.height);
     
     // Do any additional setup after loading the view.
 }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [comentarios count];
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
+        
+    }
+    
+    // Configure the cell...
+    cell.textLabel.text = [[comentarios objectAtIndex:indexPath.row]objectForKey:@"comentario"];
+    
+    return cell;}
 
 - (void)didReceiveMemoryWarning
 {

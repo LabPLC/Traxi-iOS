@@ -8,7 +8,7 @@
 
 #import "InicioViewController.h"
 #import "AppDelegate.h"
-
+#import "DetallesViewController.h"
 @interface InicioViewController ()
 
 @end
@@ -31,6 +31,8 @@
 }
 - (void)viewDidLoad
 {
+    
+    
     delegate= (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cambiarFocus) name:@"cambiar" object:nil];
@@ -40,10 +42,16 @@
     
     _letra.tag=0;
     _numeros.tag=1;
+    [_letra addTarget:self
+                  action:@selector(letraChange)
+        forControlEvents:UIControlEventEditingChanged];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
+-(void)letraChange{
+     [_numeros becomeFirstResponder];
+    NSLog(@"letra cabio");
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -125,7 +133,7 @@
     
     foto=[self convertToGreyscale:chosenImage];
     
-    
+    _imagen.image=foto;
     /*   Enviar foto para OCR
      Metodo POST
      URL: "http://codigo.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=identificaplaca"
@@ -168,7 +176,8 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     
     NSLog(@"%@",returnString);
-    
+    UIAlertView *alerta=[[UIAlertView alloc]initWithTitle:@"msj" message:returnString delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    [alerta show];
 
     //[self escanear:nil];
     [_letra becomeFirstResponder];
@@ -275,8 +284,7 @@
 }
 
 -(void)llamada_asincrona{
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://datos.labplc.mx/movilidad/taxis/%@.json",delegate.placa];
+     NSString *urlString = [NSString stringWithFormat:@"http://datos.labplc.mx/movilidad/taxis/%@.json",delegate.placa];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -303,7 +311,7 @@
                 NSArray *resultado=[consulta objectForKey:@"concesion"];
                 if([resultado count]==1)
                 {
-                    delegate.registrado=@"false";
+                    delegate.registrado=@"Este vehículo no es regular.";
                     delegate.marca=nil;
                     delegate.submarca=nil;
                     delegate.anio=nil;
@@ -313,7 +321,7 @@
                 else{
                     
                     
-                    delegate.registrado=@"true";
+                    delegate.registrado=@"Este vehículo  es regular.";
                     delegate.marca=[[consulta objectForKey:@"concesion"] objectForKey:@"marca"];
                     delegate.submarca=[[consulta objectForKey:@"concesion"] objectForKey:@"submarca"];
                     delegate.anio=[[consulta objectForKey:@"concesion"] objectForKey:@"anio"];
@@ -361,13 +369,18 @@
             NSMutableDictionary *consulta=[[NSMutableDictionary alloc]init];
             consulta = [jsonObject objectForKey:@"consulta"];
             delegate.infracciones=[consulta objectForKey:@"infracciones"];
-            delegate.tenencias=[[NSMutableDictionary alloc]initWithDictionary:[consulta objectForKey:@"tenencias"] copyItems:true];
+            delegate.tenencias=[consulta objectForKey:@"tenencias"];
             delegate.verificaciones=[consulta objectForKey:@"verificaciones"];
             
+            DetallesViewController *detalles;//=[[DescripcionViewController alloc]init];
             
+            detalles = [[self storyboard] instantiateViewControllerWithIdentifier:@"detalles"];
          
+           // DetallesViewController *detalles = [[DetallesViewController alloc] init];
+            [self.navigationController pushViewController:detalles animated:YES];
             
-            NSLog(@"el taxi debe los años %@",[delegate.tenencias objectForKey:@"adeudos"]);
+
+           // NSLog(@"el taxi debe los años %@",[delegate.tenencias objectForKey:@"adeudos"]);
             
         }
         

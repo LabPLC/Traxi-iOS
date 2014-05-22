@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetallesViewController : UIViewController <UIScrollViewDelegate>
+@interface DetallesViewController : UIViewController <UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource>
 {
     NSArray *paginas;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UIPageControl *pagecontrol;
-
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 @end
