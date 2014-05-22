@@ -317,16 +317,78 @@
             linea4.backgroundColor=[UIColor lightGrayColor];
             [_scroll addSubview:linea4];
             
-            datos4=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), linea4.frame.origin.y +1, 200, 20)];
+            datos4=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), linea4.frame.origin.y +1, 200, 50)];
             [datos4 setFont:[UIFont systemFontOfSize:12]];
             datos4.textAlignment = NSTextAlignmentLeft;
             datos4.text=delegate.registrado;
+            datos4.numberOfLines=2;
             [_scroll addSubview:datos4];
             
             imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), linea4.frame.origin.y +1, 30, 30)];
             
             imageView4.image = [UIImage imageNamed:@"usuario.png"];
             [_scroll addSubview:imageView4];
+            
+            /////////////////////
+            
+            //Guardamos la fecha actual en la variable hoy
+            NSDate *hoy = [NSDate date];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+            NSString *fecha_actual = [dateFormatter stringFromDate: hoy];
+            
+            NSDateFormatter *df= [[NSDateFormatter alloc] init];
+            
+            [df setDateFormat:@"yyyy-MM-dd"];
+            NSDate *dt1 = [[NSDate alloc] init];
+            
+            NSDate *dt2 = [[NSDate alloc] init];
+            
+            dt1=[df dateFromString:fecha_actual];
+           
+            
+            if([delegate.verificaciones count]==0){
+                imageView4.image = [UIImage imageNamed:@"tache.png"];
+                datos4.text=@"No hay información.";
+
+            }
+            
+            else{
+                dt2=[df dateFromString:[[delegate.verificaciones objectAtIndex:0] objectForKey:@"vigencia"]];
+                
+                NSComparisonResult result;
+                result = [dt1 compare:dt2];
+                //comparamos las fechas
+                if(result==NSOrderedAscending){
+                    imageView4.image = [UIImage imageNamed:@"paloma.png"];
+                    datos4.text=[NSString stringWithFormat:(@"Este vehículo tiene calcomanía:%@"),[[delegate.verificaciones objectAtIndex:0] objectForKey:@"resultado"]];
+                    
+                }
+                
+                else if(result==NSOrderedDescending)
+                {
+                    imageView4.image = [UIImage imageNamed:@"tache.png"];
+                    datos4.text=@"No hay información.";
+                    
+                    
+                }
+                
+                else
+                {
+                    imageView4.image = [UIImage imageNamed:@"paloma.png"];
+                    datos4.text=[NSString stringWithFormat:(@"Este vehículo tiene calcomanía:%@"),[[delegate.verificaciones objectAtIndex:0] objectForKey:@"resultado"]];
+                    
+                    
+                }
+                
+            }
+
+            ///////////
+            
+            
+            
+            
+            
             ////5
             lbldatos5=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), imageView4.frame.origin.y +35, 150, 20)];
             [lbldatos5 setFont:[UIFont systemFontOfSize:12]];
