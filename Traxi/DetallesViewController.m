@@ -58,6 +58,7 @@
      paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3", nil];
     [super viewDidLoad];
     for (int i = 0; i < [paginas count]; i++) {
+        
         if (i==0) {
             UIView *fondo;
             UIView *fondo_calificacion;
@@ -238,12 +239,38 @@
             [_scroll addSubview:datos2];
             
             imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+270), 91, 30, 30)];
+            
+            
+            
+            //////ver infracciones pagadas y no pagas
+            
+            
             if ([delegate.infracciones count]==0) {
                 datos2.text=@"Este vehículo no tiene multas";
                 imageView2.image = [UIImage imageNamed:@"paloma.png"];
             }
-            else{  datos2.text=@"Este vehículo  tiene multas";
-            imageView2.image = [UIImage imageNamed:@"tache.png"];
+            else{
+                
+                int infracciones=0;
+                // infracciones.text=[NSString stringWithFormat:@"%i",[delegate.infracciones count]];
+                for (int i=0; i< [delegate.infracciones count]; i++) {
+                    
+                    if([[[delegate.infracciones objectAtIndex:i]objectForKey:@"situacion"] isEqualToString:@"Pagada"]){
+                        infracciones=infracciones+1;
+                    }
+                    
+                }
+                if ([delegate.infracciones count] - infracciones!=0) {
+                    datos2.text=@"Este vehículo  tiene multas";
+                    imageView2.image = [UIImage imageNamed:@"tache.png"];
+                }
+                else{
+                    datos2.text=@"Este vehículo no tiene multas";
+                    imageView2.image = [UIImage imageNamed:@"paloma.png"];
+                    
+                }
+                
+                
             }
             
             [_scroll addSubview:imageView2];
