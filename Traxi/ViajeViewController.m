@@ -16,6 +16,7 @@
 {
     MKPolyline * ruta_direccion;
       MKPolyline * ruta;
+    int a;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +30,7 @@
 - (void)viewDidLoad
 {
     
-
+    a=0;
     _mapa.delegate=self;
     _LocationManager = [[CLLocationManager alloc] init];
     _LocationManager.delegate=self;
@@ -100,6 +101,11 @@
             //  [_mapa setRegion:region];
             
             NSLog(@"d");
+            if (a==0) {
+                UIAlertView *alerta=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"No encontramos el lugar que buscas, intenta con otra direccón" delegate:nil cancelButtonTitle:@"Aceptar" otherButtonTitles:nil, nil];
+                [alerta show];
+                a=1;
+            }
             
         }
     }else{
@@ -127,7 +133,12 @@
 
             free(pointsArray);
             [_mapa addOverlay:ruta];
-            
+            if (a==0) {
+                UIAlertView *alerta=[[UIAlertView alloc]initWithTitle:@"Mensaje" message:@"No encontramos el lugar que buscas, intenta con otra direccón" delegate:nil cancelButtonTitle:@"Aceptar" otherButtonTitles:nil, nil];
+                [alerta show];
+                a=1;
+            }
+          
             
             //  [_mapa setRegion:region];
             

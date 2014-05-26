@@ -159,6 +159,9 @@
                                     <color key="titleColor" red="0.95246731510000004" green="0.098302434679999995" blue="0.2228135121" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="tips:" destination="nOq-H7-W1f" eventType="touchDown" id="EoK-HI-Ofk"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWX-Aq-38j">
                                 <rect key="frame" x="10" y="205" width="300" height="84"/>
@@ -251,19 +254,65 @@
                                 <rect key="frame" x="20" y="155" width="130" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Mw-6b-lgD">
+                                <rect key="frame" x="245" y="155" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="save:" destination="nOq-H7-W1f" eventType="touchDown" id="KBZ-cQ-uU3"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omZ-Oy-CQz">
+                                <rect key="frame" x="0.0" y="65" width="320" height="284"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="202-fv-MNT">
+                                        <rect key="frame" x="16" y="30" width="288" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="nOq-H7-W1f" id="ROq-50-aKC"/>
+                                        </connections>
+                                    </scrollView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pvz-DP-6Fb">
+                                        <rect key="frame" x="141" y="-5" width="39" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="currentPageIndicatorTintColor" red="0.97254908080000002" green="0.1960784495" blue="0.26274511220000002" alpha="1" colorSpace="deviceRGB"/>
+                                    </pageControl>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igO-93-xJY">
+                                        <rect key="frame" x="267" y="0.0" width="43" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cerrar">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cerrar_tips:" destination="nOq-H7-W1f" eventType="touchDown" id="RLm-1J-e0n"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Buscar" id="qWg-7l-m0f"/>
+                    <navigationItem key="navigationItem" title="Buscar" id="qWg-7l-m0f">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="g4T-bx-Chk"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="imagen" destination="ggJ-n3-MZn" id="eS4-MD-Z10"/>
                         <outlet property="letra" destination="q9K-o5-yWd" id="hwh-TY-JHo"/>
                         <outlet property="numeros" destination="Hqv-Lt-nha" id="HBh-SH-Rxy"/>
+                        <outlet property="pagecontrol" destination="Pvz-DP-6Fb" id="bf7-fq-7Hf"/>
+                        <outlet property="scroll" destination="202-fv-MNT" id="VvB-ao-uci"/>
+                        <outlet property="scroll_view" destination="omZ-Oy-CQz" id="tZK-c7-ELP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zaj-oh-82s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-211" y="642"/>
+            <point key="canvasLocation" x="-279" y="628"/>
         </scene>
         <!--Detalles View Controller - Detalles-->
         <scene sceneID="vLu-1A-ZcO">
@@ -334,7 +383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vl4-dz-s1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="342" y="626"/>
+            <point key="canvasLocation" x="122" y="638"/>
         </scene>
         <!--Viaje View Controller-->
         <scene sceneID="2hq-1W-3d7">
@@ -430,10 +479,10 @@
             </objects>
             <point key="canvasLocation" x="664" y="1374"/>
         </scene>
-        <!--View Controller-->
+        <!--Calificar View Controller-->
         <scene sceneID="lBx-cx-zat">
             <objects>
-                <viewController id="yD7-R4-s8w" sceneMemberID="viewController">
+                <viewController id="yD7-R4-s8w" customClass="CalificarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xhV-rZ-hqB"/>
                         <viewControllerLayoutGuide type="bottom" id="OIz-LX-OF6"/>
@@ -476,45 +525,25 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPr-D9-bWm">
-                                <rect key="frame" x="30" y="149" width="48" height="48"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NMO-Dj-YUG" customClass="TPFloatRatingView">
+                                <rect key="frame" x="18" y="139" width="274" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="star1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Djb-l0-ORu">
-                                <rect key="frame" x="86" y="149" width="48" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zo8-3c-5qi">
+                                <rect key="frame" x="228" y="205" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="star1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbm-Bj-ZT8">
-                                <rect key="frame" x="129" y="149" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="star1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9a-is-MFv">
-                                <rect key="frame" x="185" y="149" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="star1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4p-8a-kmb">
-                                <rect key="frame" x="233" y="149" width="48" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="star1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZxN-vL-zOu"/>
+                    <connections>
+                        <outlet property="liveLabel" destination="Zo8-3c-5qi" id="ESx-Z5-hQ0"/>
+                        <outlet property="ratingView" destination="NMO-Dj-YUG" id="ZkQ-Z6-2dW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVZ-Pf-HH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -657,7 +686,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qiW-op-btB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-425" y="642"/>
+            <point key="canvasLocation" x="-899" y="648"/>
         </scene>
     </scenes>
     <resources>
@@ -667,7 +696,6 @@
         <image name="gps.png" width="72" height="72"/>
         <image name="mail.png" width="72" height="72"/>
         <image name="perfil.png" width="72" height="72"/>
-        <image name="star1.png" width="72" height="72"/>
         <image name="tips.png" width="72" height="72"/>
     </resources>
     <color key="tintColor" red="0.95246731510000004" green="0.098302434679999995" blue="0.2228135121" alpha="1" colorSpace="calibratedRGB"/>

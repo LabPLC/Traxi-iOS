@@ -17,6 +17,7 @@
 {
     UIImage *foto;
     AppDelegate *delegate;
+    NSArray *paginas;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +48,29 @@
         forControlEvents:UIControlEventEditingChanged];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil];
+    for (int i = 0; i < [paginas count]; i++) {
+        
+        if (i==0) {
+           UILabel *lbldatos3=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 35, 150, 20)];
+            [lbldatos3 setFont:[UIFont systemFontOfSize:12]];
+            lbldatos3.textAlignment = NSTextAlignmentLeft;
+            lbldatos3.text=@"Vehiculo.";
+            [_scroll addSubview:lbldatos3];
+        }
+        if (i==1) {
+            UILabel *lbldatos3=[[UILabel alloc]initWithFrame:CGRectMake(((self.scroll.frame.size.width * i)+15), 35, 150, 20)];
+            [lbldatos3 setFont:[UIFont systemFontOfSize:12]];
+            lbldatos3.textAlignment = NSTextAlignmentLeft;
+            lbldatos3.text=@"Vehiculo.";
+            [_scroll addSubview:lbldatos3];
+        }
+    
+    }
+     _scroll.contentSize = CGSizeMake(_scroll.frame.size.width * [paginas count], _scroll.frame.size.height);
+    
+    
+    
 }
 -(void)letraChange{
      [_numeros becomeFirstResponder];
@@ -387,5 +411,49 @@
     });
 }
 
+-(void)time{
+    NSLog(@"tiemp");}
+- (IBAction)save:(id)sender {
+    NSDate *hoy = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm:ss"];
+    NSString *fecha_actual = [dateFormatter stringFromDate: hoy];
+    NSTimer *s=[[NSTimer alloc]initWithFireDate:hoy interval:1 target:self selector:time(nil) userInfo:nil repeats:YES];
+    
+    // Get the current date
+   // NSDate *pickerDate = [self.datePicker date];
+    
+    // Schedule the notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+   // localNotification.fireDate =  ;
+    localNotification.alertBody = @"alerrta traxi";
+    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    // Dismiss the view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIScrollView Delegate
+- (void)scrollViewDidScroll:(UIScrollView *)sender
+{
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = self.scroll.frame.size.width;
+    int page = floor((self.scroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    _pagecontrol.currentPage = page;
+}
+
+-(IBAction)cerrar_tips:(id)sender{
+    _scroll_view.hidden=TRUE;
+}
+-(IBAction)tips:(id)sender{
+_scroll_view.hidden=FALSE;
+}
 
 @end

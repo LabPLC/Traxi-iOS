@@ -35,6 +35,9 @@
 		F389EC8F192DB7E4001FB68B /* perfil.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC8B192DB7E4001FB68B /* perfil.png */; };
 		F389EC91192E7534001FB68B /* tools.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC90192E7534001FB68B /* tools.png */; };
 		F389EC93192E790E001FB68B /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC92192E790E001FB68B /* star1.png */; };
+		F389EC96192E9F2A001FB68B /* CalificarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F389EC95192E9F2A001FB68B /* CalificarViewController.m */; };
+		F389EC98192E9FD6001FB68B /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = F389EC97192E9FD6001FB68B /* star2.png */; };
+		F389EC9F192EA2D0001FB68B /* TPFloatRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F389EC9E192EA2D0001FB68B /* TPFloatRatingView.m */; };
 		F3AF8ADC19081D36000DA874 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADB19081D36000DA874 /* Foundation.framework */; };
 		F3AF8ADE19081D36000DA874 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */; };
 		F3AF8AE019081D37000DA874 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AF8ADF19081D37000DA874 /* UIKit.framework */; };
@@ -96,6 +99,11 @@
 		F389EC8B192DB7E4001FB68B /* perfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil.png; sourceTree = "<group>"; };
 		F389EC90192E7534001FB68B /* tools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tools.png; sourceTree = "<group>"; };
 		F389EC92192E790E001FB68B /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
+		F389EC94192E9F2A001FB68B /* CalificarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalificarViewController.h; sourceTree = "<group>"; };
+		F389EC95192E9F2A001FB68B /* CalificarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalificarViewController.m; sourceTree = "<group>"; };
+		F389EC97192E9FD6001FB68B /* star2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star2.png; sourceTree = "<group>"; };
+		F389EC9D192EA2D0001FB68B /* TPFloatRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPFloatRatingView.h; sourceTree = "<group>"; };
+		F389EC9E192EA2D0001FB68B /* TPFloatRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPFloatRatingView.m; sourceTree = "<group>"; };
 		F3AF8AD819081D36000DA874 /* Traxi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traxi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3AF8ADB19081D36000DA874 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F3AF8ADD19081D36000DA874 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +166,7 @@
 				F389EC7E192DB61F001FB68B /* chinche_llena.png */,
 				F389EC84192DB635001FB68B /* cel.png */,
 				F34A80E0191849CE000E26CF /* taxi2.jpg */,
+				F389EC97192E9FD6001FB68B /* star2.png */,
 				F389EC86192DB704001FB68B /* mail.png */,
 				F389EC80192DB62F001FB68B /* foto.png */,
 				F389EC81192DB62F001FB68B /* taxi.png */,
@@ -210,6 +219,8 @@
 		F3AF8AE119081D37000DA874 /* Traxi */ = {
 			isa = PBXGroup;
 			children = (
+				F389EC9D192EA2D0001FB68B /* TPFloatRatingView.h */,
+				F389EC9E192EA2D0001FB68B /* TPFloatRatingView.m */,
 				F34A80DD19184662000E26CF /* resizeImage.h */,
 				F34A80DE19184662000E26CF /* resizeImage.m */,
 				F389EC79192DB605001FB68B /* imagebes */,
@@ -218,6 +229,8 @@
 				F3AF8AEA19081D37000DA874 /* AppDelegate.h */,
 				F3AF8AEB19081D37000DA874 /* AppDelegate.m */,
 				F3AF8AED19081D37000DA874 /* Main_iPhone.storyboard */,
+				F389EC94192E9F2A001FB68B /* CalificarViewController.h */,
+				F389EC95192E9F2A001FB68B /* CalificarViewController.m */,
 				F312730B192C36D2002E4119 /* DetallesViewController.h */,
 				F312730C192C36D2002E4119 /* DetallesViewController.m */,
 				F389EC29192C6B5F001FB68B /* ViajeViewController.h */,
@@ -349,6 +362,7 @@
 				F389EC91192E7534001FB68B /* tools.png in Resources */,
 				F34A80DA1917577C000E26CF /* yisus.jpg in Resources */,
 				F389EC87192DB704001FB68B /* mail.png in Resources */,
+				F389EC98192E9FD6001FB68B /* star2.png in Resources */,
 				F389EC85192DB635001FB68B /* cel.png in Resources */,
 				F3AF8AF719081D37000DA874 /* Images.xcassets in Resources */,
 				F3AF8AEF19081D37000DA874 /* Main_iPhone.storyboard in Resources */,
@@ -378,8 +392,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F389EC9F192EA2D0001FB68B /* TPFloatRatingView.m in Sources */,
 				F34A80DF19184662000E26CF /* resizeImage.m in Sources */,
 				F34A80D619174FF7000E26CF /* AnalizarViewController.m in Sources */,
+				F389EC96192E9F2A001FB68B /* CalificarViewController.m in Sources */,
 				F312730D192C36D2002E4119 /* DetallesViewController.m in Sources */,
 				F3AF8AF519081D37000DA874 /* ViewController.m in Sources */,
 				F3AF8AEC19081D37000DA874 /* AppDelegate.m in Sources */,
