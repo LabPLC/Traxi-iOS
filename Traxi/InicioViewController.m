@@ -33,11 +33,14 @@
 - (void)viewDidLoad
 {
     
+    /*[[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor greenColor]];
+    */
     
     delegate= (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cambiarFocus) name:@"cambiar" object:nil];
-   [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
+   [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:239/255.0 green:192/255.0 blue:63/255.0 alpha:1]];
     [_letra becomeFirstResponder];
     //_imagen.hidden=TRUE;
     
@@ -48,7 +51,9 @@
         forControlEvents:UIControlEventEditingChanged];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil];
+    paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
+    _scroll.layer.cornerRadius = 10;
+    _scroll.layer.masksToBounds = YES;
     for (int i = 0; i < [paginas count]; i++) {
         
         if (i==0) {
@@ -411,15 +416,20 @@
     });
 }
 
--(void)time{
+-(void)time_d{
     NSLog(@"tiemp");}
+
 - (IBAction)save:(id)sender {
     NSDate *hoy = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"hh:mm:ss"];
     NSString *fecha_actual = [dateFormatter stringFromDate: hoy];
     NSTimer *s=[[NSTimer alloc]initWithFireDate:hoy interval:1 target:self selector:time(nil) userInfo:nil repeats:YES];
-    
+    [NSTimer scheduledTimerWithTimeInterval:2.0
+                                     target:self
+                                   selector:@selector(time_d)
+                                   userInfo:nil
+                                    repeats:NO];
     // Get the current date
    // NSDate *pickerDate = [self.datePicker date];
     
@@ -451,9 +461,11 @@
 
 -(IBAction)cerrar_tips:(id)sender{
     _scroll_view.hidden=TRUE;
+    [_numeros becomeFirstResponder];
 }
 -(IBAction)tips:(id)sender{
 _scroll_view.hidden=FALSE;
+[self.view endEditing:YES];
 }
 
 @end

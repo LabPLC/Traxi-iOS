@@ -15,5 +15,5 @@
 @property (strong, nonatomic) IBOutlet TPFloatRatingView *ratingView;
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-
+-(IBAction)finalizar:(id)sender;
 @end

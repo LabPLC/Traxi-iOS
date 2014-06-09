@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>25A17CEA-8605-4DDF-9ED4-6DC18384D739</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Traxi</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>138EDA63-AEA9-4D8D-BE4B-09098481587D</key>
+		<string>ssh://github.com/LabPLC/Traxi-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Traxi.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>138EDA63-AEA9-4D8D-BE4B-09098481587D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/LabPLC/Traxi-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>138EDA63-AEA9-4D8D-BE4B-09098481587D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>138EDA63-AEA9-4D8D-BE4B-09098481587D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Traxi</string>
+		</dict>
+	</array>
+</dict>
+</plist>

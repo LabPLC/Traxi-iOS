@@ -8,6 +8,8 @@
 
 #import "DetallesViewController.h"
 #import "AppDelegate.h"
+#import "eventCell.h"
+
 @interface DetallesViewController ()
 
 @end
@@ -16,6 +18,8 @@
 {
     AppDelegate *delegate;
     NSArray *comentarios;
+    NSArray *collect;
+      FBLoginView *loginView ;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +36,19 @@
 
 - (void)viewDidLoad
 {
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:239/255.0 green:192/255.0 blue:63/255.0 alpha:1]];
+    loginView = [[FBLoginView alloc] init];
+    // Align the button in the center horizontally
+    
+    loginView.delegate = self;
+   
+    loginView =[[FBLoginView alloc] initWithReadPermissions:
+     @[@"public_profile", @"email", @"user_friends"]];
+    
+   
+    
+    [self.navigationItem setHidesBackButton:YES];
     UIImage *tools = [UIImage imageNamed:@"tools.png"];
     UIButton *toolsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     toolsBtn.bounds = CGRectMake( 0, 0, 50,50 );
@@ -49,7 +66,7 @@
     _tableView.dataSource   = self;
     _tableView.delegate     = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *url=[NSString stringWithFormat:(@"http://datos.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=getcomentario&placa=%@"),delegate.placa];
+        NSString *url=[NSString stringWithFormat:(@"http:/traxi.mx/~mikesaurio/taxi.php?act=pasajero&type=getcomentario&placa=%@"),delegate.placa];
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         
         if ([data length] >0  )
@@ -69,7 +86,7 @@
     delegate= (AppDelegate *)[[UIApplication sharedApplication] delegate];
     //http://datos.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=getcomentario&placa=a05601
     
-    [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
+    //[self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
      paginas=[[NSArray alloc]initWithObjects:@"1",@"2",@"3", nil];
     [super viewDidLoad];
     for (int i = 0; i < [paginas count]; i++) {
@@ -118,12 +135,15 @@
             else{*/
             
                 frame_fondo.origin.x = (self.scroll.frame.size.width * i)+15;
+            
+
                 frame_fondo.origin.y = 5;
                 frame_fondo.size.height =50;
                 frame_fondo.size.width=self.scroll.frame.size.width -20;//self.scrollView.frame.size;
                 fondo = [[UIView alloc] initWithFrame:frame_fondo];
                 fondo.backgroundColor=[UIColor lightGrayColor];
-            
+                fondo.layer.cornerRadius = 10;
+                fondo.layer.masksToBounds = YES;
                 lbldatos=[[UILabel alloc]initWithFrame:CGRectMake(3, 5, fondo.frame.size.width-20, 20)];
                 [lbldatos setFont:[UIFont systemFontOfSize:12]];
                 lbldatos.textAlignment = NSTextAlignmentLeft;
@@ -448,11 +468,13 @@
           CGRect  frame_tabla=CGRectMake((self.scroll.frame.size.width * i)+15, 15, 300, 300);
             _tableView.frame=frame_tabla;
             
-            _tableView.rowHeight=40;
+            _tableView.rowHeight=80;
            // [_tableView setBackgroundColor:[UIColor blackColor]];
           
             [_scroll addSubview:_tableView];
             [_tableView reloadData];
+            loginView.frame = CGRectMake((self.scroll.frame.size.width * i)+15, 330, 50, 100);
+            [_scroll addSubview:loginView];
         
         
         
@@ -471,20 +493,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
-        
-    }
+    eventCell *cell=[[eventCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"customCell"];
+    cell.fecha.text=[[comentarios objectAtIndex:indexPath.row]objectForKey:@"hora_inicio"];
+    cell.comentario.text=[[comentarios objectAtIndex:indexPath.row]objectForKey:@"comentario"];
+    cell.hora.text=[[comentarios objectAtIndex:indexPath.row]objectForKey:@"hora_fin"];
+    return cell;
+
     
-    // Configure the cell...
-    cell.textLabel.text = [[comentarios objectAtIndex:indexPath.row]objectForKey:@"comentario"];
     
-    return cell;}
+  }
 
 - (void)didReceiveMemoryWarning
 {
@@ -510,4 +529,129 @@
 }
 */
 
+-(void)getFriends{
+    NSArray *permissionsNeeded = @[@"basic_info", @"user_friends"];
+    
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:@"/me/permissions"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error){
+                                  // These are the current permissions the user has:
+                                  NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
+                                  
+                                  // We will store here the missing permissions that we will have to request
+                                  NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
+                                  
+                                  // Check if all the permissions we need are present in the user's current permissions
+                                  // If they are not present add them to the permissions to be requested
+                                  for (NSString *permission in permissionsNeeded){
+                                      if (![currentPermissions objectForKey:permission]){
+                                          [requestPermissions addObject:permission];
+                                      }
+                                  }
+                                  
+                                  // If we have permissions to request
+                                  if ([requestPermissions count] > 0){
+                                      // Ask for the missing permissions
+                                      [FBSession.activeSession
+                                       requestNewReadPermissions:requestPermissions
+                                       completionHandler:^(FBSession *session, NSError *error) {
+                                           if (!error) {
+                                               // Permission granted
+                                               NSLog(@"new permissions %@", [FBSession.activeSession permissions]);
+                                               // We can request the user information
+                                               //  [self makeRequestForUserData];
+                                           } else {
+                                               // An error occurred, we need to handle the error
+                                               // See: https://developers.facebook.com/docs/ios/errors
+                                           }
+                                       }];
+                                  } else {
+                                      // Permissions are present
+                                      // We can request the user information
+                                      // [self makeRequestForUserData];
+                                  }
+                                  
+                              } else {
+                                  // An error occurred, we need to handle the error
+                                  // See: https://developers.facebook.com/docs/ios/errors
+                              }
+                          }];
+    /*amigos*/
+    
+    FBRequest* friendsRequest = [FBRequest requestWithGraphPath:@"me/friends" parameters:nil HTTPMethod:@"GET"];
+    [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                  NSDictionary* result,
+                                                  NSError *error) {
+        NSArray* friends = [result objectForKey:@"data"];
+        NSLog(@"Found: %i friends", friends.count);
+        for (NSDictionary<FBGraphUser>* friend in friends) {
+            NSLog(@"I have a friend named %@ with id %@", friend.name, friend.id);
+            
+        }
+        /*
+         NSArray *friendIDs = [friends collect:^id(NSDictionary<FBGraphUser>* friend) {
+         return friend.id;
+         }];*/
+        
+    }];
+    [FBRequestConnection startWithGraphPath:@"me/friends"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error) {
+                                  // Sucess! Include your code to handle the results here
+                                  NSLog(@"user events: %@", result);
+                              } else {
+                                  // An error occurred, we need to handle the error
+                                  // See: https://developers.facebook.com/docs/ios/errors
+                              }
+                          }];
+    
+    
+
+}
+-(IBAction)nolotomo:(id)sender{
+    
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+///Facebook
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Override point for customization after application launch.
+    [FBLoginView class];
+ 
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // You can add your app-specific url handling code here if needed
+    
+    return wasHandled;
+}
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+ //   self.profilePictureView.profileID = user.id;
+    self.nameLabel.text = user.name;
+}
+// Logged-in user experience
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+  //  self.statusLabel.text = @"You're logged in as";
+}
+
+// Logged-out user experience
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+   // self.profilePictureView.profileID = nil;
+    self.nameLabel.text = @"";
+   // self.statusLabel.text= @"You're not logged in!";
+}
 @end

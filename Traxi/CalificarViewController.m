@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad
 {
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:239/255.0 green:192/255.0 blue:63/255.0 alpha:1]];
+    [self.navigationItem setHidesBackButton:YES];
     
     self.ratingView.delegate = self;
     self.ratingView.emptySelectedImage = [UIImage imageNamed:@"star1.png"];
@@ -74,5 +76,46 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+/*
+ Calificar el servicio
+ Metodo GET
+ URL: "http://datos.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=addcomentario"
+ +"&id_usuario="+id_usuario
+ +"&calificacion="+Scalificacion
+ +"&comentario="+Scomentario
+ +"&placa="+placa
+ +"&id_face="+face
+ +"&pointinilat="+latitud_inicial
+ +"&pointinilon="+longitud_inicial
+ +"&pointfinlat="+latitud
+ +"&pointfinlon="+longitud;
+ 
+
+ 
+ */
+
+-(IBAction)finalizar:(id)sender{
+    
+   /* dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *url=[NSString stringWithFormat:(@"http://datos.labplc.mx/~mikesaurio/taxi.php?act=pasajero&type=addcomentario&id_usuario=%@&calificacion=%@&comentario=%@&placa=%@&id_face=%@&pointinilat=%@&pointinilon=%@&pointfinlat=%@&pointfinlon=%@"),delegate.placa];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        
+        if ([data length] >0  )
+        {
+            NSString *dato=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSMutableString * miCadena = [NSMutableString stringWithString: dato];
+            NSData *data1 = [miCadena dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data1 options:NSJSONReadingAllowFragments error:nil];
+            
+            NSMutableDictionary *consulta=[[NSMutableDictionary alloc]init];
+            consulta = [jsonObject objectForKey:@"message"];
+            comentarios=[consulta objectForKey:@"calificacion"];
+            
+        }
+    });
+    */
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface DetallesViewController : UIViewController <UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource>
+#import <FacebookSDK/FacebookSDK.h>
+@interface DetallesViewController : UIViewController <FBLoginViewDelegate,UIScrollViewDelegate,UITableViewDelegate, UITableViewDataSource>
 {
     NSArray *paginas;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UIPageControl *pagecontrol;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+-(IBAction)nolotomo:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @end

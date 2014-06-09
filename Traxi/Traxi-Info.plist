@@ -28,6 +28,10 @@
 	<array>
 		<string>location</string>
 	</array>
+	<key>FacebookAppID</key>
+	<string>622752297805514</string>
+	<key>FacebookDisplayName</key>
+	<string>Traxi</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>

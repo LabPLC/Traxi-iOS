@@ -29,7 +29,8 @@
 
 - (void)viewDidLoad
 {
-    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:239/255.0 green:192/255.0 blue:63/255.0 alpha:1]];
+    [self.navigationItem setHidesBackButton:YES];
     a=0;
     _mapa.delegate=self;
     _LocationManager = [[CLLocationManager alloc] init];
@@ -293,4 +294,5 @@
     return overlayView;
     
 }*/
+
 @end

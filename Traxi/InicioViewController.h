@@ -22,5 +22,6 @@
 - (IBAction)takePhoto:(UIButton *)sender;
 -(IBAction)verificar:(id)sender;
 - (IBAction)save:(id)sende;
+
 @end
 
